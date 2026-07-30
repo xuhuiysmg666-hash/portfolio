@@ -56,6 +56,9 @@ section .container{max-width:1200px;margin:0 auto}
 .work-card .card-info .meta{font-family:'Inter',sans-serif;font-size:0.8rem;color:#b8a08a;margin-bottom:10px}
 .work-card .card-info .tags{display:flex;gap:8px;flex-wrap:wrap}
 .work-card .card-info .tags span{padding:3px 10px;font-family:'Inter',sans-serif;font-size:0.72rem;border:1px solid #e0d8cf;color:#8c7b6e;letter-spacing:0.03em}
+.work-card.video-card video{width:100%;height:220px;object-fit:cover;display:block;background:#1a1a1a;border-radius:2px 2px 0 0}
+.work-card.video-card .card-info h4{font-size:0.95rem;color:#4a3b32;font-weight:600}
+@media(max-width:768px){.work-card.video-card video{height:200px}}
 
 /* ===== About ===== */
 #about{background:#fff;border-top:1px solid #e8ddd0;border-bottom:1px solid #e8ddd0}
@@ -121,34 +124,62 @@ footer{text-align:center;padding:32px 40px;font-family:'Inter',sans-serif;font-s
   <div class="container">
     <div class="section-label">Creative Works</div>
     <h2 class="section-title">创意视觉</h2>
-    <p class="section-desc">概念设计、品牌视觉、场景氛围图等 AI 生成素材，涵盖多种风格与主题。</p>
+    <p class="section-desc">AI 生成创意视频素材，涵盖视觉特效、动态场景、概念短片等多种风格。</p>
     <div class="works-grid">
 
-      <div class="work-card">
-        <div class="card-img bg-1"><span class="img-placeholder">作品图</span></div>
-        <div class="card-info">
-          <h4>赛博城市概念</h4>
-          <div class="meta">2026 · 概念设计</div>
-          <div class="tags"><span>Midjourney</span><span>PS 后期</span></div>
-        </div>
+      <div class="work-card video-card">
+        <video src="media/creative/7.23jofxujqt.mp4" controls preload="none" playsinline></video>
+        <div class="card-info"><h4>视觉特效短篇 01</h4></div>
       </div>
 
-      <div class="work-card">
-        <div class="card-img bg-2"><span class="img-placeholder">作品图</span></div>
-        <div class="card-info">
-          <h4>东方奇幻场景</h4>
-          <div class="meta">2026 · 氛围图</div>
-          <div class="tags"><span>Stable Diffusion</span><span>ComfyUI</span></div>
-        </div>
+      <div class="work-card video-card">
+        <video src="media/creative/7月22日 (3)1.mp4" controls preload="none" playsinline></video>
+        <div class="card-info"><h4>动态场景 01</h4></div>
       </div>
 
-      <div class="work-card">
-        <div class="card-img bg-3"><span class="img-placeholder">作品图</span></div>
-        <div class="card-info">
-          <h4>品牌视觉系统</h4>
-          <div class="meta">2026 · 商业项目</div>
-          <div class="tags"><span>Midjourney</span><span>Illustrator</span></div>
-        </div>
+      <div class="work-card video-card">
+        <video src="media/creative/7月22日 (3)5.mp4" controls preload="none" playsinline></video>
+        <div class="card-info"><h4>动态场景 02</h4></div>
+      </div>
+
+      <div class="work-card video-card">
+        <video src="media/creative/021faf9480a63e5d9dc1bfa66f5cdb0c_raw.mp4" controls preload="none" playsinline></video>
+        <div class="card-info"><h4>概念短片 01</h4></div>
+      </div>
+
+      <div class="work-card video-card">
+        <video src="media/creative/23b54ee79e90a7d68bd13812de03ccc9_raw.mp4" controls preload="none" playsinline></video>
+        <div class="card-info"><h4>概念短片 02</h4></div>
+      </div>
+
+      <div class="work-card video-card">
+        <video src="media/creative/724 (13).mp4" controls preload="none" playsinline></video>
+        <div class="card-info"><h4>概念短片 03</h4></div>
+      </div>
+
+      <div class="work-card video-card">
+        <video src="media/creative/6144154e3c934a358981e8fcee264e3c_raw.mp4" controls preload="none" playsinline></video>
+        <div class="card-info"><h4>氛围短片 01</h4></div>
+      </div>
+
+      <div class="work-card video-card">
+        <video src="media/creative/38436054125569282_51092190724825346_7_tos-cn-p-9ecd54_oMJpcRtNbgGx1XNQBeh2RHBDrAZaIJfzqqZxEL.mp4" controls preload="none" playsinline></video>
+        <div class="card-info"><h4>视觉叙事长片</h4></div>
+      </div>
+
+      <div class="work-card video-card">
+        <video src="media/creative/38436175794971650_51198269804765186_7_tos-cn-p-9ecd54_oMPRms7IEAQ1lQNofatho9hHSUShx0I5aAD4BQ.mp4" controls preload="none" playsinline></video>
+        <div class="card-info"><h4>氛围短片 02</h4></div>
+      </div>
+
+      <div class="work-card video-card">
+        <video src="media/creative/b7c62d29884d0517847443473ed49c64_raw.mp4" controls preload="none" playsinline></video>
+        <div class="card-info"><h4>视觉实验 01</h4></div>
+      </div>
+
+      <div class="work-card video-card">
+        <video src="media/creative/f9082a482032c70d0356ce986c5c0d8c_raw.mp4" controls preload="none" playsinline></video>
+        <div class="card-info"><h4>视觉实验 02</h4></div>
       </div>
 
     </div>
