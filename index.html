@@ -40,13 +40,70 @@ section .container{max-width:1200px;margin:0 auto}
 /* ===== Works Grid ===== */
 #creative-visuals{background:#fff}
 #portrait-product{background:#f5f0eb}
-.works-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:32px}
+.works-grid{display:flex;flex-wrap:wrap;gap:28px;justify-content:center}
+
+/* ===== 9:16 Video Card ===== */
+.work-card.video-card{
+  width:280px;
+  aspect-ratio:9/16;
+  position:relative;
+  overflow:hidden;
+  border-radius:2px;
+  cursor:pointer;
+  background:#1a1a1a;
+  transition:transform .35s,box-shadow .35s;
+}
+.work-card.video-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 20px 48px rgba(0,0,0,.2);
+}
+.work-card.video-card .poster{
+  position:absolute;
+  inset:0;width:100%;height:100%;
+  object-fit:cover;
+  z-index:2;
+  transition:opacity .4s ease;
+}
+.work-card.video-card video{
+  position:absolute;
+  inset:0;width:100%;height:100%;
+  object-fit:cover;
+  z-index:1;
+}
+.work-card.video-card .card-label{
+  position:absolute;
+  bottom:0;left:0;right:0;
+  z-index:3;
+  padding:32px 16px 14px;
+  background:linear-gradient(transparent,rgba(0,0,0,.55));
+  opacity:0;
+  transform:translateY(8px);
+  transition:opacity .35s ease,transform .35s ease;
+}
+.work-card.video-card:hover .card-label{
+  opacity:1;
+  transform:translateY(0);
+}
+.work-card.video-card .card-label h4{
+  font-size:0.9rem;
+  font-weight:500;
+  color:#fff;
+  letter-spacing:0.03em;
+}
+.work-card.video-card.hovering .poster{opacity:0}
+
+@media(max-width:768px){
+  .work-card.video-card{width:220px}
+}
+
+@media(max-width:480px){
+  .work-card.video-card{width:calc(50vw - 36px);min-width:150px}
+}
+
+/* ===== Standard Card (人像·产品) ===== */
 .work-card{background:#fff;border:1px solid #e8ddd0;border-radius:2px;overflow:hidden;transition:all .35s;cursor:pointer}
 .work-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(74,59,50,.1);border-color:#c8b8a4}
 .work-card .card-img{width:100%;height:260px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.work-card .card-img.bg-1{background:linear-gradient(160deg,#dfceba,#c8b8a4)}
-.work-card .card-img.bg-2{background:linear-gradient(160deg,#d5c8b6,#baaa94)}
-.work-card .card-img.bg-3{background:linear-gradient(160deg,#e2d4c0,#c9b99f)}
 .work-card .card-img.bg-4{background:linear-gradient(160deg,#e8dcc8,#d0bfa4)}
 .work-card .card-img.bg-5{background:linear-gradient(160deg,#dbcdb4,#c0ad8e)}
 .work-card .card-img.bg-6{background:linear-gradient(160deg,#e5d6bf,#cbb798)}
@@ -56,9 +113,6 @@ section .container{max-width:1200px;margin:0 auto}
 .work-card .card-info .meta{font-family:'Inter',sans-serif;font-size:0.8rem;color:#b8a08a;margin-bottom:10px}
 .work-card .card-info .tags{display:flex;gap:8px;flex-wrap:wrap}
 .work-card .card-info .tags span{padding:3px 10px;font-family:'Inter',sans-serif;font-size:0.72rem;border:1px solid #e0d8cf;color:#8c7b6e;letter-spacing:0.03em}
-.work-card.video-card video{width:100%;height:220px;object-fit:cover;display:block;background:#1a1a1a;border-radius:2px 2px 0 0}
-.work-card.video-card .card-info h4{font-size:0.95rem;color:#4a3b32;font-weight:600}
-@media(max-width:768px){.work-card.video-card video{height:200px}}
 
 /* ===== About ===== */
 #about{background:#fff;border-top:1px solid #e8ddd0;border-bottom:1px solid #e8ddd0}
@@ -87,7 +141,6 @@ footer{text-align:center;padding:32px 40px;font-family:'Inter',sans-serif;font-s
   .hero .hero-left{padding-right:0;margin-bottom:48px}
   .hero .desc{margin:0 auto 36px}
   #about .about-grid{grid-template-columns:1fr;gap:40px}
-  .works-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -124,62 +177,73 @@ footer{text-align:center;padding:32px 40px;font-family:'Inter',sans-serif;font-s
   <div class="container">
     <div class="section-label">Creative Works</div>
     <h2 class="section-title">创意视觉</h2>
-    <p class="section-desc">AI 生成创意视频素材，涵盖视觉特效、动态场景、概念短片等多种风格。</p>
+    <p class="section-desc">AI 生成创意视频素材，涵盖视觉特效、动态场景、概念短片等多种风格。鼠标悬停即可预览播放。</p>
     <div class="works-grid">
 
       <div class="work-card video-card">
-        <video src="media/creative/7.23jofxujqt.mp4" controls preload="none" playsinline></video>
-        <div class="card-info"><h4>视觉特效短篇 01</h4></div>
+        <img class="poster" src="media/posters/creative/7.23jofxujqt.jpg" alt="" loading="lazy">
+        <video src="media/creative/7.23jofxujqt.mp4" muted loop playsinline preload="none"></video>
+        <div class="card-label"><h4>视觉特效短篇 01</h4></div>
       </div>
 
       <div class="work-card video-card">
-        <video src="media/creative/7月22日 (3)1.mp4" controls preload="none" playsinline></video>
-        <div class="card-info"><h4>动态场景 01</h4></div>
+        <img class="poster" src="media/posters/creative/7%E6%9C%8822%E6%97%A5%20(3)1.jpg" alt="" loading="lazy">
+        <video src="media/creative/7%E6%9C%8822%E6%97%A5%20(3)1.mp4" muted loop playsinline preload="none"></video>
+        <div class="card-label"><h4>动态场景 01</h4></div>
       </div>
 
       <div class="work-card video-card">
-        <video src="media/creative/7月22日 (3)5.mp4" controls preload="none" playsinline></video>
-        <div class="card-info"><h4>动态场景 02</h4></div>
+        <img class="poster" src="media/posters/creative/7%E6%9C%8822%E6%97%A5%20(3)5.jpg" alt="" loading="lazy">
+        <video src="media/creative/7%E6%9C%8822%E6%97%A5%20(3)5.mp4" muted loop playsinline preload="none"></video>
+        <div class="card-label"><h4>动态场景 02</h4></div>
       </div>
 
       <div class="work-card video-card">
-        <video src="media/creative/021faf9480a63e5d9dc1bfa66f5cdb0c_raw.mp4" controls preload="none" playsinline></video>
-        <div class="card-info"><h4>概念短片 01</h4></div>
+        <img class="poster" src="media/posters/creative/021faf9480a63e5d9dc1bfa66f5cdb0c_raw.jpg" alt="" loading="lazy">
+        <video src="media/creative/021faf9480a63e5d9dc1bfa66f5cdb0c_raw.mp4" muted loop playsinline preload="none"></video>
+        <div class="card-label"><h4>概念短片 01</h4></div>
       </div>
 
       <div class="work-card video-card">
-        <video src="media/creative/23b54ee79e90a7d68bd13812de03ccc9_raw.mp4" controls preload="none" playsinline></video>
-        <div class="card-info"><h4>概念短片 02</h4></div>
+        <img class="poster" src="media/posters/creative/23b54ee79e90a7d68bd13812de03ccc9_raw.jpg" alt="" loading="lazy">
+        <video src="media/creative/23b54ee79e90a7d68bd13812de03ccc9_raw.mp4" muted loop playsinline preload="none"></video>
+        <div class="card-label"><h4>概念短片 02</h4></div>
       </div>
 
       <div class="work-card video-card">
-        <video src="media/creative/724 (13).mp4" controls preload="none" playsinline></video>
-        <div class="card-info"><h4>概念短片 03</h4></div>
+        <img class="poster" src="media/posters/creative/724%20(13).jpg" alt="" loading="lazy">
+        <video src="media/creative/724%20(13).mp4" muted loop playsinline preload="none"></video>
+        <div class="card-label"><h4>概念短片 03</h4></div>
       </div>
 
       <div class="work-card video-card">
-        <video src="media/creative/6144154e3c934a358981e8fcee264e3c_raw.mp4" controls preload="none" playsinline></video>
-        <div class="card-info"><h4>氛围短片 01</h4></div>
+        <img class="poster" src="media/posters/creative/6144154e3c934a358981e8fcee264e3c_raw.jpg" alt="" loading="lazy">
+        <video src="media/creative/6144154e3c934a358981e8fcee264e3c_raw.mp4" muted loop playsinline preload="none"></video>
+        <div class="card-label"><h4>氛围短片 01</h4></div>
       </div>
 
       <div class="work-card video-card">
-        <video src="media/creative/38436054125569282_51092190724825346_7_tos-cn-p-9ecd54_oMJpcRtNbgGx1XNQBeh2RHBDrAZaIJfzqqZxEL.mp4" controls preload="none" playsinline></video>
-        <div class="card-info"><h4>视觉叙事长片</h4></div>
+        <img class="poster" src="media/posters/creative/38436054125569282_51092190724825346_7_tos-cn-p-9ecd54_oMJpcRtNbgGx1XNQBeh2RHBDrAZaIJfzqqZxEL.jpg" alt="" loading="lazy">
+        <video src="media/creative/38436054125569282_51092190724825346_7_tos-cn-p-9ecd54_oMJpcRtNbgGx1XNQBeh2RHBDrAZaIJfzqqZxEL.mp4" muted loop playsinline preload="none"></video>
+        <div class="card-label"><h4>视觉叙事长片</h4></div>
       </div>
 
       <div class="work-card video-card">
-        <video src="media/creative/38436175794971650_51198269804765186_7_tos-cn-p-9ecd54_oMPRms7IEAQ1lQNofatho9hHSUShx0I5aAD4BQ.mp4" controls preload="none" playsinline></video>
-        <div class="card-info"><h4>氛围短片 02</h4></div>
+        <img class="poster" src="media/posters/creative/38436175794971650_51198269804765186_7_tos-cn-p-9ecd54_oMPRms7IEAQ1lQNofatho9hHSUShx0I5aAD4BQ.jpg" alt="" loading="lazy">
+        <video src="media/creative/38436175794971650_51198269804765186_7_tos-cn-p-9ecd54_oMPRms7IEAQ1lQNofatho9hHSUShx0I5aAD4BQ.mp4" muted loop playsinline preload="none"></video>
+        <div class="card-label"><h4>氛围短片 02</h4></div>
       </div>
 
       <div class="work-card video-card">
-        <video src="media/creative/b7c62d29884d0517847443473ed49c64_raw.mp4" controls preload="none" playsinline></video>
-        <div class="card-info"><h4>视觉实验 01</h4></div>
+        <img class="poster" src="media/posters/creative/b7c62d29884d0517847443473ed49c64_raw.jpg" alt="" loading="lazy">
+        <video src="media/creative/b7c62d29884d0517847443473ed49c64_raw.mp4" muted loop playsinline preload="none"></video>
+        <div class="card-label"><h4>视觉实验 01</h4></div>
       </div>
 
       <div class="work-card video-card">
-        <video src="media/creative/f9082a482032c70d0356ce986c5c0d8c_raw.mp4" controls preload="none" playsinline></video>
-        <div class="card-info"><h4>视觉实验 02</h4></div>
+        <img class="poster" src="media/posters/creative/f9082a482032c70d0356ce986c5c0d8c_raw.jpg" alt="" loading="lazy">
+        <video src="media/creative/f9082a482032c70d0356ce986c5c0d8c_raw.mp4" muted loop playsinline preload="none"></video>
+        <div class="card-label"><h4>视觉实验 02</h4></div>
       </div>
 
     </div>
@@ -261,6 +325,22 @@ footer{text-align:center;padding:32px 40px;font-family:'Inter',sans-serif;font-s
 </section>
 
 <footer>&copy; 2026 AI 素材生成师 · jnbot.asia</footer>
+
+<script>
+document.querySelectorAll('.video-card').forEach(card => {
+  const video = card.querySelector('video');
+  card.addEventListener('mouseenter', () => {
+    card.classList.add('hovering');
+    video.currentTime = 0;
+    video.play().catch(() => {});
+  });
+  card.addEventListener('mouseleave', () => {
+    card.classList.remove('hovering');
+    video.pause();
+    video.currentTime = 0;
+  });
+});
+</script>
 
 </body>
 </html>
