@@ -324,52 +324,25 @@ footer{text-align:center;padding:32px 40px;font-family:'Inter',sans-serif;font-s
 <footer>&copy; 2026 AI 素材生成师 · jnbot.asia</footer>
 
 <script>
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const vid = entry.target;
-      if (vid.dataset.src) {
-        vid.src = vid.dataset.src;
-        delete vid.dataset.src;
-      }
-      observer.unobserve(vid);
-
-      const card = vid.closest('.video-card');
-      if (!card) return;
-
-      let leaveTimer;
-
-      card.addEventListener('mouseenter', () => {
-        clearTimeout(leaveTimer);
-        card.classList.add('hovering');
-        if (vid.readyState >= 2) {
-          vid.currentTime = 0;
-          vid.play().catch(() => {});
-        } else {
-          vid.addEventListener('canplay', function go() {
-            vid.removeEventListener('canplay', go);
-            vid.play().catch(() => {});
-          }, { once: true });
-          vid.load();
-        }
-      });
-
-      card.addEventListener('mouseleave', () => {
-        card.classList.remove('hovering');
-        leaveTimer = setTimeout(() => {
-          vid.pause();
-          vid.currentTime = 0;
-        }, 200);
-      });
-    }
-  });
-}, { rootMargin: '300px' });
-
 document.querySelectorAll('.video-card video').forEach(v => {
-  v.dataset.src = v.getAttribute('src');
-  v.removeAttribute('src');
-  v.load();
-  observer.observe(v);
+  v.preload = 'metadata';
+});
+
+document.querySelectorAll('.video-card').forEach(card => {
+  const video = card.querySelector('video');
+  if (!video) return;
+
+  card.addEventListener('mouseenter', () => {
+    card.classList.add('hovering');
+    video.currentTime = 0;
+    video.play().catch(() => {});
+  });
+
+  card.addEventListener('mouseleave', () => {
+    card.classList.remove('hovering');
+    video.pause();
+    video.currentTime = 0;
+  });
 });
 </script>
 
