@@ -277,9 +277,32 @@ footer{text-align:center;padding:32px 40px;font-family:'Inter',sans-serif;font-s
 <footer>&copy; 2026 钱嘉俊 · jnbot.asia</footer>
 
 <script>
-document.querySelectorAll('.video-card video').forEach(v => {
-  v.preload = 'none';
-});
+const videos = Array.from(document.querySelectorAll('.video-card video'));
+
+// 预加载策略：前 3 个立即预加载，其余在进入视口前 1200px 时预加载
+function preloadVideo(v) {
+  v.preload = 'auto';
+  v.load();
+}
+
+if ('IntersectionObserver' in window) {
+  videos.slice(0, 3).forEach(preloadVideo);
+
+  const rest = videos.slice(3);
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        preloadVideo(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { rootMargin: '1200px 0px' });
+
+  rest.forEach(v => observer.observe(v));
+} else {
+  // 不支持 IntersectionObserver 时降级：全部立即预加载
+  videos.forEach(preloadVideo);
+}
 
 document.querySelectorAll('.video-card').forEach(card => {
   const video = card.querySelector('video');
